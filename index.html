@@ -44,7 +44,7 @@
     <canvas id="canvas"></canvas>
   </div>
 
-  <audio id="myAudio" autoplay playsinline preload="auto" loop>
+  <audio id="myAudio" playsinline preload="auto" loop>
     <source src="music/setlove.mp3" type="audio/mpeg" />
     <source src="music/setlove.ogg" type="audio/ogg" />
   </audio>
@@ -70,10 +70,8 @@
         audioPrompt.setAttribute("aria-hidden", "false");
       }
 
-      audio.play().then(hidePrompt).catch(function () {
-        // Autoplay blocked by browser; require a user gesture.
-        showPrompt();
-      });
+      // Require user interaction before playing audio.
+      showPrompt();
 
       audioPlayBtn.addEventListener("click", function () {
         audio.play().then(hidePrompt).catch(function (e) {
