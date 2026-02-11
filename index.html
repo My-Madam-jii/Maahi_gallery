@@ -28,7 +28,7 @@
       <img src="./images/r9.png" alt="" />
       <img src="./images/r10.png" alt="" />
       <img src="./images/r11.png" alt="" />
-      <p>Oo Maahi... 💕.</p>
+      <p>Oo Maahi...💕</p>
     </div>
     <div id="ground"></div>
   </div>
@@ -44,19 +44,41 @@
     <canvas id="canvas"></canvas>
   </div>
 
-  <audio id="myAudio" autoplay playsinline>
+  <audio id="myAudio" autoplay playsinline preload="auto">
     <source src="music/setlove.mp3" type="audio/mpeg" />
     <source src="music/setlove.ogg" type="audio/ogg" />
   </audio>
+  <div id="audioPrompt" aria-hidden="true">
+    <button id="audioPlayBtn" type="button">💗</button>
+  </div>
 
   <script src="main.js"></script>
 
   <script>
     window.onload = function () {
       var audio = document.getElementById("myAudio");
-      audio.muted = false;
-      audio.play().catch(function (e) {
-        console.log("Audio playback failed:", e);
+      var audioPrompt = document.getElementById("audioPrompt");
+      var audioPlayBtn = document.getElementById("audioPlayBtn");
+
+      function hidePrompt() {
+        audioPrompt.style.display = "none";
+        audioPrompt.setAttribute("aria-hidden", "true");
+      }
+
+      function showPrompt() {
+        audioPrompt.style.display = "flex";
+        audioPrompt.setAttribute("aria-hidden", "false");
+      }
+
+      audio.play().then(hidePrompt).catch(function () {
+        // Autoplay blocked by browser; require a user gesture.
+        showPrompt();
+      });
+
+      audioPlayBtn.addEventListener("click", function () {
+        audio.play().then(hidePrompt).catch(function (e) {
+          console.log("Audio playback failed:", e);
+        });
       });
 
       const canvas = document.getElementById("canvas");
