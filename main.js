@@ -10,7 +10,7 @@ var bgMusicURL = null;
 var bgMusicControls = true; // Show UI music control
 
 var WHATSAPP_NUMBER = "919155150110";
-var WHATSAPP_TEXT = "\uD83D\uDC96 I Love you II..! \uD83D\uDC95\uD83E\uDD79";
+var WHATSAPP_TEXT = "\uD83D\uDC96 😊..! \uD83D\uDC95\uD83E\uDD79";
 
 
 // ===================== start =======================
