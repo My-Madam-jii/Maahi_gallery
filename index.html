@@ -48,35 +48,14 @@
     <source src="music/setlove.mp3" type="audio/mpeg" />
     <source src="music/setlove.ogg" type="audio/ogg" />
   </audio>
-  <div id="audioPrompt" aria-hidden="true">
-    <button id="audioPlayBtn" type="button">💗</button>
-  </div>
 
   <script src="main.js"></script>
 
   <script>
     window.onload = function () {
       var audio = document.getElementById("myAudio");
-      var audioPrompt = document.getElementById("audioPrompt");
-      var audioPlayBtn = document.getElementById("audioPlayBtn");
-
-      function hidePrompt() {
-        audioPrompt.style.display = "none";
-        audioPrompt.setAttribute("aria-hidden", "true");
-      }
-
-      function showPrompt() {
-        audioPrompt.style.display = "flex";
-        audioPrompt.setAttribute("aria-hidden", "false");
-      }
-
-      // Require user interaction before playing audio.
-      showPrompt();
-
-      audioPlayBtn.addEventListener("click", function () {
-        audio.play().then(hidePrompt).catch(function (e) {
-          console.log("Audio playback failed:", e);
-        });
+      audio.play().catch(function (e) {
+        console.log("Audio playback failed:", e);
       });
 
       const canvas = document.getElementById("canvas");
@@ -198,3 +177,5 @@
   </script>
 </body>
 </html>
+
+
