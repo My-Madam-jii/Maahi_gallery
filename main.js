@@ -6,9 +6,11 @@ var imgWidth = 120; // width of images (unit: px)
 var imgHeight = 170; // height of images (unit: px)
 
 // Link of background music - set 'null' if you dont want to play background music
-var bgMusicURL = 'https://api.soundcloud.com/tracks/143041228/stream?client_id=587aa2d384f7333a886010d5f52f302a';
+var bgMusicURL = null;
 var bgMusicControls = true; // Show UI music control
 
+var WHATSAPP_NUMBER = "919155150110";
+var WHATSAPP_TEXT = "\uD83D\uDC96 I Love you II..! \uD83D\uDC95\uD83E\uDD79";
 
 
 // ===================== start =======================
@@ -116,8 +118,22 @@ document.onmousewheel = function(e) {
   radius += d;
   init(1);
 };
+
+function openWhatsAppMessage() {
+  var encodedMessage = encodeURIComponent(WHATSAPP_TEXT);
+  window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${encodedMessage}`, "_blank");
+}
+
 setTimeout(() => {
   const replyBtn = document.getElementById("ReplyBtn");
+  if (!replyBtn) return;
+  const replyLink = replyBtn.querySelector("a");
+  if (replyLink) {
+    replyLink.addEventListener("click", function (e) {
+      e.preventDefault();
+      openWhatsAppMessage();
+    });
+  }
   replyBtn.style.pointerEvents = "auto";
   replyBtn.style.opacity = "1";
   replyBtn.style.animation = "shootIn 2s ease forwards";
